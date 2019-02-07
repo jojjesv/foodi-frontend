@@ -26,7 +26,7 @@ module.exports = {
     extensions: [".js", ".jsx", ".tsx", ".ts"]
   },
   devServer: {
-    contentBase: path.join(__dirname, 'public'),
+    contentBase: path.join(__dirname, 'dist'),
     historyApiFallback: {
       index: 'index.html'
     }

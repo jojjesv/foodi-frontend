@@ -5,10 +5,16 @@ interface Props {
   onRecipeClicked: (data: RecipePreview) => void;
 }
 
+class State {
+  items: RecipePreview[] = [];
+}
+
 /**
  * Fetches and renders a list of recipes.
  */
-export default class RecipeList extends React.Component {
+export default class RecipeList extends React.Component<Props, State> {
+  state = new State();
+
   componentDidMount(){
     this.fetchRecipes();
   }

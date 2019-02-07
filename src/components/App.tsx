@@ -11,16 +11,24 @@ class State {
  * Top-level app component. Renders recipe list and recipe info.
  */
 export default class App extends React.Component<any, State> {
+  showRecipeInfo(recipeId: any) {
+    this.setState({
+      recipeInfoId: recipeId
+    })
+  }
+
   render() {
     let { state } = this;
 
     return (
       <div>
-        <RecipeList />
+        <RecipeList
+          onRecipeClicked={d => this.showRecipeInfo(d.id)}
+        />
         {
           state.recipeInfoId ? (
             <RecipeInfoModal
-
+              recipeId={state.recipeInfoId}
             />
           ) : null
         }

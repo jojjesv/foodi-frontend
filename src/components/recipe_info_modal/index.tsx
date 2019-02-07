@@ -5,7 +5,7 @@ class State {
 }
 
 interface Props {
-
+  recipeId: any;
 }
 
 /**

@@ -3,6 +3,7 @@ import RecipeInfo from '../../models/RecipeInfo';
 import { fetchRecipeInfo } from './service';
 import StepList from '../step_list';
 import './styles.scss';
+import Comments from '../comments';
 
 class State {
   fetchingData = false;
@@ -11,6 +12,7 @@ class State {
 
 interface Props {
   recipeId: any;
+  onRequestClose: () => void;
 }
 
 /**
@@ -43,12 +45,16 @@ export default class RecipeInfoModal extends React.Component<Props, State> {
   }
 
   render() {
-    let { state } = this;
+    let { state, props } = this;
     let { data, fetchingData } = state;
 
     return (
-      <div className="modal-container">
-        <div className="modal recipe-info">
+      <div className="modal-container" onClick={() => {
+        props.onRequestClose()
+      }}>
+        <div className="modal recipe-info" onClick={e => {
+          e.stopPropagation();
+        }}>
 
           {
             state.fetchingData ? (
@@ -60,7 +66,7 @@ export default class RecipeInfoModal extends React.Component<Props, State> {
                 }}>
                 </div>
 
-                <div className="padded-content">
+                <div className="modal-content">
                   <h1 className="title">{data.name}</h1>
                   <p className="description">{data.description}</p>
 
@@ -72,9 +78,10 @@ export default class RecipeInfoModal extends React.Component<Props, State> {
                   <h2>Ingredients ({data.ingredients.length})</h2>
                   <p className="ingredients">{data.ingredients.join(", ")}</p>
 
-
                   <h2>Steps ({data.steps.length})</h2>
                   <StepList data={data.steps} />
+
+                  <Comments recipeId={props.recipeId} />
                 </div>
               </>
             ) : null

@@ -1,0 +1,35 @@
+form {
+  .field {
+    margin: 16px 0;
+  }
+  
+  .label {
+    display: block;
+    margin: 0 0 2px 0;
+    font-weight: 700;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    background: #fff;
+    border: none;
+    padding: 0.625rem 1.125rem;
+    font-size: 1rem;
+    resize: none;
+    box-sizing: border-box;
+    border-radius: 5px;
+  }
+
+  button[type="submit"] {
+    background: none;
+    color: #0D47A1;
+    font-size: 1rem;
+    border: none;
+
+    .fas {
+      display: inline-block;
+      margin-right: 6px;
+    }
+  }
+}

@@ -12,7 +12,7 @@ class State {
  */
 export default class App extends React.Component<any, State> {
   state = new State();
-  
+
   showRecipeInfo(recipeId: any) {
     this.setState({
       recipeInfoId: recipeId
@@ -30,6 +30,11 @@ export default class App extends React.Component<any, State> {
         {
           state.recipeInfoId ? (
             <RecipeInfoModal
+              onRequestClose={() => {
+                this.setState({
+                  recipeInfoId: null
+                })
+              }}
               recipeId={state.recipeInfoId}
             />
           ) : null

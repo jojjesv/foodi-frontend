@@ -1,4 +1,9 @@
 import * as React from 'react';
+import RecipePreview from '../../models/RecipePreview';
+
+interface Props {
+  onRecipeClicked: (data: RecipePreview) => void;
+}
 
 /**
  * Fetches and renders a list of recipes.

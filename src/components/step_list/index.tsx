@@ -1,5 +1,6 @@
 import * as React from 'react';
 import StepData from '../../models/StepData';
+import './styles.scss';
 
 interface Props {
   data: StepData[]

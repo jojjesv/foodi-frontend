@@ -1,0 +1,23 @@
+.step-list {
+  .step {
+    display: flex;
+    flex-direction: row;
+    
+    .position-container {
+      width: 7.5rem;
+    }
+
+    .position {
+      font-weight: 400;
+      font-size: 2rem;
+    }
+  }
+
+  li {
+    &:not(:first-of-type) {
+      .step {
+        border-top: 1px solid #D8D8D8;
+      }
+    }
+  }
+}

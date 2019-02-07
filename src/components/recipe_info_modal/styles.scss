@@ -1,0 +1,26 @@
+.padded-content {
+  padding: 24px;
+}
+
+.recipe-info {
+  .title {
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+    color: #424242;
+  }
+
+  .categories {
+    .icon {
+      display: inline-block;
+      margin: 0 12px 0 8px;
+    }
+  }
+
+  p {
+    margin: 1.75rem 0;
+  }
+
+  h2 + p {
+    margin-top: 0.825rem;
+  }
+}

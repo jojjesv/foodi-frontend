@@ -2,6 +2,7 @@ import * as React from 'react';
 import RecipeInfo from '../../models/RecipeInfo';
 import { fetchRecipeInfo } from './service';
 import StepList from '../step_list';
+import './styles.scss';
 
 class State {
   fetchingData = false;
@@ -53,12 +54,13 @@ export default class RecipeInfoModal extends React.Component<Props, State> {
             state.fetchingData ? (
               <div>Loading...</div>
             ) : !!data ? (
-                <>
-                  <div className="cover-img" role="img" style={{
-                    backgroundImage: `url(${data.imageUrl})`
-                  }}>
-                  </div>
+              <>
+                <div className="cover-img" role="img" style={{
+                  backgroundImage: `url(${data.imageUrl})`
+                }}>
+                </div>
 
+                <div className="padded-content">
                   <h1 className="title">{data.name}</h1>
                   <p className="description">{data.description}</p>
 
@@ -73,8 +75,9 @@ export default class RecipeInfoModal extends React.Component<Props, State> {
 
                   <h2>Steps ({data.steps.length})</h2>
                   <StepList data={data.steps} />
-                </>
-              ) : null
+                </div>
+              </>
+            ) : null
           }
 
         </div>

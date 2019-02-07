@@ -1,9 +1,10 @@
 import * as React from 'react';
 import RecipeInfo from '../../models/RecipeInfo';
 import { fetchRecipeInfo } from './service';
+import StepList from '../step_list';
 
 class State {
-  fetchinData = false;
+  fetchingData = false;
   data: RecipeInfo;
 }
 
@@ -27,7 +28,7 @@ export default class RecipeInfoModal extends React.Component<Props, State> {
     let { props } = this;
 
     this.setState({
-      fetchinData: true
+      fetchingData: true
     })
 
     let { recipeId } = props;
@@ -35,20 +36,20 @@ export default class RecipeInfoModal extends React.Component<Props, State> {
 
     this.setState({
       data,
-      fetchinData: false
+      fetchingData: false
     })
   }
 
   render() {
     let { state } = this;
-    let { data, fetchinData } = state;
+    let { data, fetchingData } = state;
 
     return (
       <div className="modal-container">
         <div className="modal recipe-info">
 
           {
-            state.fetchinData ? (
+            state.fetchingData ? (
               <div>Loading...</div>
             ) : (
                 <>
@@ -58,6 +59,19 @@ export default class RecipeInfoModal extends React.Component<Props, State> {
                   </div>
 
                   <h1 className="title">{data.name}</h1>
+                  <p className="description">{data.description}</p>
+
+                  <p className="categories">
+                    <span className="icon fas fa-tag"></span>
+                    {data.ingredients.join(", ")}
+                  </p>
+
+                  <h2>Ingredients ({data.ingredients.length})</h2>
+                  <p className="ingredients">{data.ingredients.join(", ")}</p>
+
+
+                  <h2>Steps ({data.steps.length})</h2>
+                  <StepList data={data.steps} />
                 </>
               )
           }

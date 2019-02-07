@@ -18,10 +18,10 @@ class State {
 export default class RecipeList extends React.Component<Props, State> {
   state = new State();
 
-  componentDidMount(){
+  componentDidMount() {
     this.fetchRecipes();
   }
-  
+
   async fetchRecipes() {
     this.setState({
       fetchingItems: true
@@ -40,18 +40,24 @@ export default class RecipeList extends React.Component<Props, State> {
     let { items } = state;
 
     return (
-      <div>
-        <ul className="recipe-list">
-          {
-            items.map(e => (
-              <li>
-                <RecipeListItem data={e} onClick={_ => {
-                  props.onRecipeClicked(e);
-                }} />
-              </li>
-            ))
-          }
-        </ul>
+      <div className="recipe-list-container">
+        {
+          state.fetchingItems ? (
+            <div>Loadingu loadingu...</div>
+          ) : (
+              <ul className="recipe-list">
+                {
+                  items.map(e => (
+                    <li>
+                      <RecipeListItem data={e} onClick={_ => {
+                        props.onRecipeClicked(e);
+                      }} />
+                    </li>
+                  ))
+                }
+              </ul>
+            )
+        }
       </div>
     )
   }

@@ -26,7 +26,7 @@ export default class CommentForm extends React.Component<Props, State> {
 
     let { recipeId } = props;
 
-    await submitComment(state.inputAuthor, state.inputMessage, props.recipeId);
+    await submitComment(state.inputAuthor, state.inputMessage, recipeId);
 
     this.setState({
       submitting: true

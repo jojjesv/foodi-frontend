@@ -10,6 +10,9 @@ interface Props {
  */
 export default class CommentListItem extends React.Component<Props> {
   render() {
+    let { props } = this;
+    let { data } = props;
+    
     return (
       <div>
         <h3></h3>

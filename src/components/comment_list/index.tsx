@@ -1,11 +1,12 @@
 import * as React from 'react';
+import CommentData from '../../models/CommentData';
 
 class State {
-
+  items: CommentData[] = [];
 }
 
 interface Props {
-
+  
 }
 
 /**

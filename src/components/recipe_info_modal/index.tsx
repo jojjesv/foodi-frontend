@@ -1,7 +1,8 @@
 import * as React from 'react';
+import RecipeInfo from '../../models/RecipeInfo';
 
 class State {
-
+  data: RecipeInfo;
 }
 
 interface Props {

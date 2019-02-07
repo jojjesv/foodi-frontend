@@ -1,6 +1,7 @@
 import * as React from 'react';
 import CommentData from '../../models/CommentData';
 import { likeComment } from './service';
+import './styles.scss';
 
 interface Props {
   data: CommentData;
@@ -34,16 +35,21 @@ export default class CommentListItem extends React.Component<Props> {
     return (
       <div className="comment-item">
         <div className="toolbar">
-          <h3 className="author">{data.author}</h3>
+          <h3 className="author">
+            {data.author}
+            <span className="like-count">
+              (+{data.likeCount})
+            </span>
+          </h3>
 
           <a role="button" className="button" title="Report this comment">
-            <span className=""></span>
+            <span className="fas fa-flag"></span>
           </a>
           <a role="button" className="button" title="Like this comment">
-            <span className=""></span>
+            <span className="fas fa-flag"></span>
           </a>
         </div>
-        <p className="message">{data.author}</p>
+        <p className="message">{data.message}</p>
       </div>
     )
   }

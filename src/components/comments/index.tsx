@@ -3,6 +3,7 @@ import CommentData from '../../models/CommentData';
 import { fetchComments } from './service';
 import CommentListItem from '../comment_list_item';
 import CommentForm from '../comment_form';
+import './styles.scss';
 
 class State {
   fetchingItems = false;

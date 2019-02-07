@@ -1,0 +1,33 @@
+{
+  "name": "slutproj-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jojjesv/foodi-frontend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jojjesv/foodi-frontend/issues"
+  },
+  "homepage": "https://github.com/jojjesv/foodi-frontend#readme",
+  "dependencies": {
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1"
+  },
+  "devDependencies": {
+    "@types/react": "^16.8.2",
+    "@types/react-dom": "^16.8.0",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-loader": "^8.0.5",
+    "node-sass": "^4.11.0",
+    "typescript": "^3.3.1",
+    "webpack-dev-server": "^3.1.14"
+  }
+}

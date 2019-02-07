@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/jojjesv/foodi-frontend#readme",
   "dependencies": {
+    "css-loader": "^2.1.0",
     "react": "^16.8.1",
     "react-dom": "^16.8.1"
   },
@@ -28,6 +29,8 @@
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.5",
     "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
     "typescript": "^3.3.1",
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3",

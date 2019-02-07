@@ -1,0 +1,17 @@
+.recipe-list-item {
+  width: 100%;
+
+  .name {
+    margin: 0;
+    padding: 1.125rem 1.25rem;
+    background: #E0E0E0;
+    color: #212121;
+  }
+}
+
+.cover-img {
+  width: 100%;
+  height: 25vh;
+  background-position: center;
+  background-size: cover;
+}

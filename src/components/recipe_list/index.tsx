@@ -2,6 +2,7 @@ import * as React from 'react';
 import RecipePreview from '../../models/RecipePreview';
 import { fetchRecipePreviews } from './service';
 import RecipeListItem from '../recipe_list_item';
+import './styles.scss';
 
 interface Props {
   onRecipeClicked: (data: RecipePreview) => void;

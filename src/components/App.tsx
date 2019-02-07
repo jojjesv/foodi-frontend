@@ -11,6 +11,8 @@ class State {
  * Top-level app component. Renders recipe list and recipe info.
  */
 export default class App extends React.Component<any, State> {
+  state = new State();
+  
   showRecipeInfo(recipeId: any) {
     this.setState({
       recipeInfoId: recipeId

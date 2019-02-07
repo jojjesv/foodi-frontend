@@ -1,5 +1,6 @@
 import * as React from 'react';
 import RecipePreview from '../../models/RecipePreview';
+import './styles.scss';
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   data: RecipePreview;
@@ -16,7 +17,7 @@ export default class RecipeListItem extends React.Component<Props> {
     let restProps = {
       ...props
     }
-    delete restProps.about;
+    delete restProps.data;
 
     return (
       <div className="recipe-list-item" {...restProps}>

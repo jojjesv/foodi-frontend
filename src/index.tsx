@@ -3,5 +3,9 @@ import {
   render
 } from 'react-dom';
 import App from './components/App';
+import './modal.scss';
+import './styles.scss';
 
-render(<App />, document.getElementById('app-root'))
+window.onload = () => {
+  render(<App />, document.getElementById('app-root'))
+}

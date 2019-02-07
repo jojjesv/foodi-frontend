@@ -16,6 +16,7 @@ interface Props {
  * Modal component which fetches and renders recipe info.
  */
 export default class RecipeInfoModal extends React.Component<Props, State> {
+  state = new State()
 
   componentDidMount() {
     this.fetchInfo();
@@ -51,7 +52,7 @@ export default class RecipeInfoModal extends React.Component<Props, State> {
           {
             state.fetchingData ? (
               <div>Loading...</div>
-            ) : (
+            ) : !!data ? (
                 <>
                   <div className="cover-img" role="img" style={{
                     backgroundImage: `url(${data.imageUrl})`
@@ -73,7 +74,7 @@ export default class RecipeInfoModal extends React.Component<Props, State> {
                   <h2>Steps ({data.steps.length})</h2>
                   <StepList data={data.steps} />
                 </>
-              )
+              ) : null
           }
 
         </div>

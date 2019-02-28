@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/jojjesv/foodi-frontend#readme",
   "dependencies": {
+    "classnames": "^2.2.6",
     "css-loader": "^2.1.0",
     "js-cookie": "^2.2.0",
     "react": "^16.8.1",
@@ -26,6 +27,7 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.7",
     "@types/js-cookie": "^2.2.1",
     "@types/react": "^16.8.2",
     "@types/react-dom": "^16.8.0",

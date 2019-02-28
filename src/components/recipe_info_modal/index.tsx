@@ -72,16 +72,20 @@ export default class RecipeInfoModal extends React.Component<Props, State> {
 
                   <p className="categories">
                     <span className="icon fas fa-tag"></span>
-                    {data.ingredients.join(", ")}
+                    {data.categories.join(", ")}
                   </p>
 
                   <h2>Ingredients ({data.ingredients.length})</h2>
-                  <p className="ingredients">{data.ingredients.join(", ")}</p>
+                  <p className="ingredients">{data.ingredients.map(ingr => (
+                    `${ingr.quantity ? `${ingr.quantity} ` : ''}${ingr.name}`
+                  )).join(", ")}</p>
 
                   <h2>Steps ({data.steps.length})</h2>
                   <StepList data={data.steps} />
 
-                  <Comments recipeId={props.recipeId} />
+                  <Comments
+                    recipeId={props.recipeId}
+                    comments={data.comments} />
                 </div>
               </>
             ) : null

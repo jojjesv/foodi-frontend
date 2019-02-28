@@ -7,11 +7,11 @@ import './styles.scss';
 
 class State {
   fetchingItems = false;
-  items: CommentData[] = [];
 }
 
 interface Props {
   recipeId: any;
+  comments: CommentData[];
 }
 
 /**
@@ -19,35 +19,11 @@ interface Props {
  */
 export default class Comments extends React.Component<Props, State> {
   state = new State();
-  
-  componentDidMount() {
-    this.fetchComments();
-  }
-
-  /**
-   * Fetches all comments for the specific recipe.
-   */
-  async fetchComments() {
-    let { props } = this;
-    this.setState({
-      fetchingItems: true
-    })
-
-    let { recipeId } = props;
-
-    let items = await fetchComments(recipeId);
-
-    this.setState({
-      items,
-      fetchingItems: false
-    })
-  }
 
   render() {
     let { state, props } = this;
-    let { items } = state;
 
-    let { recipeId } = props;
+    let { recipeId, comments } = props;
 
     return (
       <div className="comment-list-container">
@@ -56,10 +32,10 @@ export default class Comments extends React.Component<Props, State> {
             <div>Loading...</div>
           ) : (
               <>
-                <h2>Comments ({items.length})</h2>
+                <h2>Comments ({comments.length})</h2>
                 <ul className="comment-list">
                   {
-                    items.map(e => (
+                    comments.map(e => (
                       <li>
                         <CommentListItem data={e} />
                       </li>

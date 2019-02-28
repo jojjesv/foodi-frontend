@@ -6,5 +6,6 @@ export default class CommentData {
   author: string;
   message: string;
   likeCount: number;
+  replies: CommentData[];
   currentUserLiked = false;
 }

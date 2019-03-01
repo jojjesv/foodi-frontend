@@ -1,15 +1,18 @@
 import * as React from 'react';
 import { submitComment } from './service';
 import './styles.scss';
+import CommentData from '../../models/CommentData';
 
 interface Props {
   recipeId: any;
+  onSubmittedComment: (data: CommentData) => void;
 }
 
 class State {
   submitting = false;
   inputAuthor: string;
   inputMessage: string;
+  addedComment?: CommentData;
 }
 
 /**
@@ -31,6 +34,16 @@ export default class CommentForm extends React.Component<Props, State> {
 
     this.setState({
       submitting: true
+    })
+
+    props.onSubmittedComment({
+      author: state.inputAuthor,
+      currentUserLiked: false,
+      id: null,
+      likeCount: 0,
+      message: state.inputMessage,
+      replies: [],
+      reported: false
     })
   }
 

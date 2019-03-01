@@ -5,6 +5,7 @@ import CommentForm from '../comment_form';
 import './styles.scss';
 
 class State {
+  createdComments: CommentData[] = [];
   fetchingItems = false;
 }
 
@@ -22,7 +23,9 @@ export default class Comments extends React.Component<Props, State> {
   render() {
     let { state, props } = this;
 
-    let { recipeId, comments } = props;
+    let { recipeId } = props;
+
+    let comments = props.comments.concat(state.createdComments)
 
     return (
       <div className="comment-list-container">
@@ -31,7 +34,7 @@ export default class Comments extends React.Component<Props, State> {
             <div>Loading...</div>
           ) : (
               <>
-                <h2>Comments ({comments.length})</h2>
+                <h2>Comments ({comments.reduce((p, c) => p + 1 + c.replies.length, 0)})</h2>
                 <ul className="comment-list">
                   {
                     comments.map(e => (
@@ -42,7 +45,11 @@ export default class Comments extends React.Component<Props, State> {
                   }
                 </ul>
 
-                <CommentForm recipeId={recipeId} />
+                <CommentForm
+                  recipeId={recipeId}
+                  onSubmittedComment={data => this.setState((o: State) => {
+                    o.createdComments.push(data)
+                  })} />
               </>
             )
         }

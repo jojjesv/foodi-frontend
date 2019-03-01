@@ -1,6 +1,6 @@
 import * as React from 'react';
 import CommentData from '../../models/CommentData';
-import { likeComment } from './service';
+import { likeComment, reportComment } from './service';
 import './styles.scss';
 import classNames from 'classnames';
 
@@ -20,14 +20,33 @@ export default class CommentListItem extends React.Component<Props> {
     let { props } = this;
     let { data } = props;
 
-    if (data.currentUserLiked) {
-      //  Already liked
+    if (data.currentUserLiked || !data.id) {
+      //  Already liked or newely created
       return
     }
 
     likeComment(data.id);
 
     data.currentUserLiked = true;
+    this.forceUpdate();
+  }
+
+  /**
+   * Reports this comment.
+   */
+  async reportComment() {
+    let { props } = this;
+    let { data } = props;
+
+    if (data.reported || !data.id) {
+      //  Already reported or newely created
+      return
+    }
+
+    reportComment(data.id);
+
+    data.reported = true;
+    this.forceUpdate();
   }
 
   render() {
@@ -37,6 +56,7 @@ export default class CommentListItem extends React.Component<Props> {
     return (
       <div className={classNames({
         "comment-item": true,
+        "reported": data.reported,
         "reply": props.isReply
       })}>
         <div className="toolbar">
@@ -47,11 +67,13 @@ export default class CommentListItem extends React.Component<Props> {
             </span>
           </h3>
 
-          <a role="button" className="button" title="Report this comment">
+          <a role="button" className="button flag"
+            title="Report this comment" onClick={() => this.reportComment()}>
             <span className="fas fa-flag"></span>
           </a>
-          <a role="button" className="button" title="Like this comment">
-            <span className="fas fa-flag"></span>
+          <a role="button" className="button like"
+            title="Like this comment" onClick={() => this.likeComment()}>
+            <span className="fas fa-heart"></span>
           </a>
         </div>
         <p className="message">{data.message}</p>

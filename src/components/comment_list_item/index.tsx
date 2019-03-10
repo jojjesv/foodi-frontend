@@ -1,8 +1,8 @@
+import classNames from 'classnames';
 import * as React from 'react';
 import CommentData from '../../models/CommentData';
 import { likeComment, reportComment } from './service';
 import './styles.scss';
-import classNames from 'classnames';
 
 interface Props {
   data: CommentData;
@@ -28,6 +28,7 @@ export default class CommentListItem extends React.Component<Props> {
     likeComment(data.id);
 
     data.currentUserLiked = true;
+    data.likeCount++;
     this.forceUpdate();
   }
 
@@ -52,6 +53,8 @@ export default class CommentListItem extends React.Component<Props> {
   render() {
     let { props } = this;
     let { data } = props;
+
+    console.log("comment data: ", data)
 
     return (
       <div className={classNames({

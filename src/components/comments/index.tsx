@@ -47,6 +47,7 @@ export default class Comments extends React.Component<Props, State> {
 
                 <CommentForm
                   recipeId={recipeId}
+                  allComments={props.comments}
                   onSubmittedComment={data => this.setState((o: State) => {
                     o.createdComments.push(data)
                   })} />

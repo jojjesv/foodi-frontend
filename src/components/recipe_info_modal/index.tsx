@@ -15,6 +15,8 @@ interface Props {
   onRequestClose: () => void;
 }
 
+const CommentContext = React.createContext({});
+
 /**
  * Modal component which fetches and renders recipe info.
  */

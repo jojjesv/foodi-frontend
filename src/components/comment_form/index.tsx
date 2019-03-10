@@ -1,9 +1,10 @@
 import * as React from 'react';
+import CommentData from '../../models/CommentData';
 import { submitComment } from './service';
 import './styles.scss';
-import CommentData from '../../models/CommentData';
 
 interface Props {
+  allComments: CommentData[];
   recipeId: any;
   onSubmittedComment: (data: CommentData) => void;
 }
@@ -12,7 +13,13 @@ class State {
   submitting = false;
   inputAuthor: string;
   inputMessage: string;
+  inputReplyToId?: string;
   addedComment?: CommentData;
+}
+
+class CommenReplyOption {
+  text: string;
+  commentId: string;
 }
 
 /**
@@ -30,11 +37,15 @@ export default class CommentForm extends React.Component<Props, State> {
 
     let { recipeId } = props;
 
-    await submitComment(state.inputAuthor, state.inputMessage, recipeId);
-
-    this.setState({
-      submitting: true
-    })
+    try {
+      await submitComment(state.inputAuthor, state.inputMessage, recipeId, state.inputReplyToId);
+    } catch (e) {
+      console.error(e);
+      this.setState({
+        submitting: false
+      })
+      return
+    }
 
     props.onSubmittedComment({
       author: state.inputAuthor,
@@ -45,6 +56,30 @@ export default class CommentForm extends React.Component<Props, State> {
       replies: [],
       reported: false
     })
+
+    this.setState({
+      submitting: true,
+      inputAuthor: null,
+      inputMessage: null,
+      inputReplyToId: null
+    })
+  }
+
+  get replyOptions(): CommenReplyOption[] {
+    let { allComments: comments } = this.props;
+    if (!comments || !comments.length) {
+      return [];
+    }
+
+    let options: CommenReplyOption[] = [];
+    comments.forEach(c => {
+      if (c.replies.length == 0) {
+        //  is top level
+        options.push({ commentId: c.id, text: `${c.author}: ${c.message}` })
+      }
+    });
+
+    return options;
   }
 
   render() {
@@ -58,10 +93,12 @@ export default class CommentForm extends React.Component<Props, State> {
         }}>
           <div className="field">
             <label className="label"
-              htmlFor="comment-input-author">Your name</label>
+              htmlFor="comment-input-author">Your (honest) name</label>
             <input
               id="comment-input-author"
-              name="author" onChange={e => {
+              name="author"
+              value={state.inputAuthor}
+              onChange={e => {
                 this.setState({
                   inputAuthor: e.currentTarget.value.trim()
                 })
@@ -74,11 +111,24 @@ export default class CommentForm extends React.Component<Props, State> {
               this.setState({
                 inputMessage: e.currentTarget.value.trim()
               })
-            }}>
+            }}
+            value={state.inputMessage}></textarea>
+          </div>
+          <div className="field">
+            <label className="label"
+              htmlFor="comment-input-reply">Reply to</label>
+            <select
+              id="comment-input-reply"
+              onChange={e => this.setState({ inputReplyToId: (e.target as HTMLSelectElement).value })}
+              name="reply">
+              <option selected={state.inputReplyToId == null}></option>
               {
-                state.inputMessage
+                this.replyOptions.map(opt => (
+                  <option key={opt.commentId} value={opt.commentId}
+                    selected={state.inputReplyToId == opt.commentId}>{opt.text}</option>
+                ))
               }
-            </textarea>
+            </select>
           </div>
           <div className="submit-container">
             <button type="submit">

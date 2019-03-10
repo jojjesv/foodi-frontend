@@ -8,7 +8,7 @@
 //import fetch from 'whatwg-fetch';
 
 let dev = window.location.origin.indexOf(':808') != -1
-let baseUrl = dev ? `http://172.16.42.22:8080/api` : `/api`;
+let baseUrl = dev ? `http://localhost:8080/api` : `/api`;
 
 /**
  * Performs a standard backend request.
